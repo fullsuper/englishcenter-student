@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "100575313508",
+    "firebase_url": "https://mobileenglishcenter.firebaseio.com",
+    "project_id": "mobileenglishcenter",
+    "storage_bucket": "mobileenglishcenter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100575313508:android:fc60470b8182fd91",
+        "android_client_info": {
+          "package_name": "com.example.mobileda.englishcenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100575313508-q9p4o6tk38rgba6642kuvqdt9c4ao8a9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mobileda.englishcenter",
+            "certificate_hash": "9d0760af78ea1fdf99a32fca65036e17106d8e0c"
+          }
+        },
+        {
+          "client_id": "100575313508-trj3sitqaldvp3ranhn9uc9g854j67uk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk9iecr5IlEmMVwu9qXpiMoJlUUzUEabY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100575313508-trj3sitqaldvp3ranhn9uc9g854j67uk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

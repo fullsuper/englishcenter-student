@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:title="Trang chủ"
+        android:icon="@mipmap/home"/>
+    <item
+        android:id="@+id/nav_schedule"
+        android:title="Thời khóa biểu"
+        android:icon="@mipmap/calendar"/>
+    <item
+        android:id="@+id/nav_message"
+        android:title="Tin nhắn"
+        android:icon="@mipmap/envelope"/>
+    <item
+        android:id="@+id/nav_subjects"
+        android:title="Đăng ký môn học"
+        android:icon="@mipmap/note"/>
+    <item
+        android:id="@+id/nav_testing_schedule"
+        android:title="Lịch thi"
+        android:icon="@mipmap/calendar1"/>
+    <item
+        android:id="@+id/nav_quizs"
+        android:title="Quizs"
+        android:icon="@mipmap/exam"/>
+    <item
+        android:id="@+id/nav_mark"
+        android:title="Xem điểm"
+        android:icon="@mipmap/loupe"/>
+    <item
+        android:id="@+id/nav_fee"
+        android:title="Học phí"
+        android:icon="@mipmap/money"/>
+</menu>
