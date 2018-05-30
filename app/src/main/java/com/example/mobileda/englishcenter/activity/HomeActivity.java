@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 
@@ -19,9 +20,12 @@ import com.example.mobileda.englishcenter.R;
 import com.example.mobileda.englishcenter.fragment.MessFragment;
 import com.example.mobileda.englishcenter.fragment.ResultSubjectFragment;
 import com.example.mobileda.englishcenter.fragment.ScheduleFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class HomeActivity extends AppCompatActivity {
+    private static final String TAG = "LOG_HOME";
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigation;
@@ -32,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        Log.d(TAG, mAuth.getUid()+"");
         toolbar = (Toolbar) findViewById(R.id.nav_action);
         setSupportActionBar(toolbar);
 
@@ -40,8 +47,6 @@ public class HomeActivity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-
 
         navigation = (NavigationView) findViewById(R.id.navigation);
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

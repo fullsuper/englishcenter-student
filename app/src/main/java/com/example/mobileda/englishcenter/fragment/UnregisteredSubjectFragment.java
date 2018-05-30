@@ -1,10 +1,13 @@
 package com.example.mobileda.englishcenter.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +17,37 @@ import com.example.mobileda.englishcenter.R;
 
 import java.util.ArrayList;
 
+import com.example.mobileda.englishcenter.activity.RegistorActivity;
 import com.example.mobileda.englishcenter.adapter.RecyclerDataAdapter;
+import com.example.mobileda.englishcenter.adapter.RegistrationAdapter;
 import com.example.mobileda.englishcenter.model.Message;
+import com.example.mobileda.englishcenter.model.RegistrationCourse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class UnregisteredSubjectFragment extends Fragment {
+import javax.annotation.Nullable;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class UnregisteredSubjectFragment extends android.support.v4.app.Fragment
+        implements EventListener<DocumentSnapshot> {
+
+    private final String TAG = RegistorSubjectFragment.class.getSimpleName();
+    private FirebaseFirestore mFirestore;
+    private FirebaseAuth mAuth;
+    private Query mQuery;
+    private RegistrationAdapter mAdapter;
 
     private static final String KEY_REGISTRAITION = "key_registration";
 
     public UnregisteredSubjectFragment() {
-        // Required empty public constructor
     }
+
     public static UnregisteredSubjectFragment newInstance(String registration) {
         UnregisteredSubjectFragment fragment = new UnregisteredSubjectFragment();
         Bundle args = new Bundle();
@@ -36,52 +56,58 @@ public class UnregisteredSubjectFragment extends Fragment {
         return fragment;
     }
 
-    ArrayList<Message> lstCourse;
-    private RecyclerView rvItems;
+    @BindView(R.id.section_label)
     TextView textView;
+    @BindView(R.id.rvCourse)
+    RecyclerView rvItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_unregisteredsubject, container, false);
+        ButterKnife.bind(this,rootView);
 
-        //Mapping
-        Map(rootView);
+        rvItems.addItemDecoration(new DividerItemDecoration(rvItems.getContext(), DividerItemDecoration.VERTICAL));
+        mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-        textView.setText("Chưa đăng ký");
+        mQuery = mFirestore.collection("lstCourse");
+
+        mAdapter = new RegistrationAdapter(mQuery, new RegistrationAdapter.OnCourseClickListener() {
+            @Override
+            public void OnCourseClicked(DocumentSnapshot snapshot) {
+                Intent intent = new Intent(getActivity(), RegistorActivity.class);
+                intent.putExtra("COURSE_ID",snapshot.getId().toString());
+                intent.putExtra("KEY", UnregisteredSubjectFragment.class.toString());
+                startActivity(intent); }})
+        {
+            @Override
+            protected void onDataChanged() {}
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                super.onError(e);
+            }
+        };
+
+        textView.setText("Danh sách khóa học");
+        rvItems.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvItems.setAdapter(mAdapter);
 
         return rootView;
     }
-    private void Map(View view)
-    {
-        //db = FirebaseFirestore.getInstance();
-        lstCourse= new ArrayList<>();
-        rvItems = view.findViewById(R.id.rvCourse);
-        textView = view.findViewById(R.id.section_label);
 
-        lstCourse.add(new Message(R.mipmap.headphones,"Unregister","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Unregister 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listen1,"Unregister 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listjob,"Unregister 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.openbook,"Unregister 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Unregister 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.headphones,"Unregister 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.write1,"Unregister 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.headphones,"Unregister","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Unregister 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listen1,"Unregister 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listjob,"Unregister 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.openbook,"Unregister 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Unregister 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.headphones,"Unregister 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.write1,"Unregister 2","Nguyễn Thành Đồng"));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rvItems.setLayoutManager(layoutManager);
-        rvItems.setHasFixedSize(true);
-        rvItems.setAdapter(new RecyclerDataAdapter(getActivity(), lstCourse));
-        //end data
-
+    @Override
+    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
     }
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mAdapter!=null)
+            mAdapter.startListening();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
 }

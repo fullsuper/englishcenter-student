@@ -128,14 +128,5 @@
         </TableRow>
 
     </TableLayout>
-    <ImageButton
-        android:clickable="true"
-        android:id="@+id/btnReturnSubject"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:src="@mipmap/previous"
-        android:background="@null"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>

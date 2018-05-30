@@ -25,12 +25,14 @@ public abstract class FirestoreAdapter<VH extends RecyclerView.ViewHolder>
         implements EventListener<QuerySnapshot> {
 
     private static final String TAG = "FirestoreAdapter";
-
     private Query mQuery;
     private ListenerRegistration mRegistration;
 
     private ArrayList<DocumentSnapshot> mSnapshots = new ArrayList<>();
 
+    public FirestoreAdapter(Query query) {
+        mQuery = query;
+    }
 
     @Override
     public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {

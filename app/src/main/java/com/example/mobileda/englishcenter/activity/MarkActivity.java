@@ -7,22 +7,15 @@ import android.widget.ImageButton;
 
 import com.example.mobileda.englishcenter.R;
 
+import butterknife.BindView;
+
 public class MarkActivity extends AppCompatActivity {
 
-    ImageButton btnReturn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_subject);
-        btnReturn = (ImageButton) findViewById(R.id.btnReturnSubject);
-
-        btnReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setContentView(R.layout.activity_result_subject);
-            }
-        });
     }
 
 }

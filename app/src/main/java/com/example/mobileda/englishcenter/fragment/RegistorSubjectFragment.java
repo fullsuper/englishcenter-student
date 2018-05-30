@@ -1,28 +1,51 @@
 package com.example.mobileda.englishcenter.fragment;
 
+import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.mobileda.englishcenter.R;
+import com.example.mobileda.englishcenter.activity.RegistorActivity;
+import com.example.mobileda.englishcenter.adapter.RegistrationAdapter;
+import com.example.mobileda.englishcenter.model.RegistrationCourse;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
+import javax.annotation.Nullable;
 
-import com.example.mobileda.englishcenter.adapter.RecyclerDataAdapter;
-import com.example.mobileda.englishcenter.model.Message;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
-public class RegistorSubjectFragment extends android.support.v4.app.Fragment {
+public class RegistorSubjectFragment extends android.support.v4.app.Fragment
+implements EventListener<DocumentSnapshot>
+{
 
     private static final String KEY_REGISTRAITION = "key_registration";
 
-    public RegistorSubjectFragment() {
-    }
+    private final String TAG = RegistorSubjectFragment.class.getSimpleName();
+    private FirebaseFirestore mFirestore;
+    private FirebaseAuth mAuth;
+    private Query mQuery;
+    private RegistrationAdapter mAdapter;
 
-    // Method static dạng singleton, cho phép tạo fragment mới, lấy tham số đầu vào để cài đặt màu sắc.
+    public RegistorSubjectFragment() { }
+
+    // Method static dạng singleton, cho phép tạo fragment mới
     public static RegistorSubjectFragment newInstance(String registration) {
         RegistorSubjectFragment fragment = new RegistorSubjectFragment();
         Bundle args = new Bundle();
@@ -31,57 +54,66 @@ public class RegistorSubjectFragment extends android.support.v4.app.Fragment {
         return fragment;
     }
 
-    //Mapping
-    private ArrayList<Message> lstCourse;
-    private RecyclerView rvItems;
-    private TextView textView;
+
+    @BindView(R.id.rvCourse)
+    RecyclerView rvItems;
+
+    @BindView(R.id.section_label)
+    TextView textView;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+        if (e != null) {
+            Log.w(TAG, "restaurant:onEvent", e);
+            return;
+        }
+    }
+
+    @Override
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.fragment_courseregistration, container, false);
+        ButterKnife.bind(this,rootView);
 
-        //Mapping
-        Map(rootView);
+        rvItems.addItemDecoration(new DividerItemDecoration(rvItems.getContext(), DividerItemDecoration.VERTICAL));
+        mFirestore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        mQuery = mFirestore.collection("lstStudent").document(mAuth.getUid()).collection("courses");//.whereEqualTo(strQuery,FirebaseAuth.getInstance().getUid());
+
+        mAdapter = new RegistrationAdapter(mQuery, new RegistrationAdapter.OnCourseClickListener() {
+            @Override
+            public void OnCourseClicked(DocumentSnapshot snapshot) {
+                Intent intent = new Intent(getActivity(), RegistorActivity.class);
+                intent.putExtra("COURSE_ID",snapshot.getId().toString());
+                intent.putExtra("KEY", "NONE_REGISTOR");
+                startActivity(intent); }})
+        {
+            @Override
+            protected void onDataChanged() {}
+            @Override
+            protected void onError(FirebaseFirestoreException e) {
+                super.onError(e);
+            }
+        };
+
+        rvItems.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvItems.setAdapter(mAdapter);
 
         switch (getArguments().getString(KEY_REGISTRAITION)) {
-            case "Registration": {
-                //chuyển qua fragment lớp đã đăng ký
-                textView.setText("Đã đăng ký");
-            }
-            break;
-            default: {
-                //chuyển qua fragment chưa đăng ký
-                textView.setText("Đăng ký");
-            }
-            break;
+            case "Registration": {textView.setText("Đã đăng ký");}break;
+            default: {textView.setText("Đăng ký");}break;
         }
         return rootView;
     }
-
-    private void Map(View view)
-    {
-        //db = FirebaseFirestore.getInstance();
-        lstCourse= new ArrayList<>();
-        rvItems = view.findViewById(R.id.rvCourse);
-        textView = view.findViewById(R.id.section_label);
-
-        lstCourse.add(new Message(R.mipmap.headphones,"Listen 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Reading 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listen1,"Listen 3","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.listjob,"Reading 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.openbook,"Writing 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.reading,"Reading 1","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.headphones,"Listen 2","Nguyễn Thành Đồng"));
-        lstCourse.add(new Message(R.mipmap.write1,"Writing 2","Nguyễn Thành Đồng"));
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
-        rvItems.setLayoutManager(layoutManager);
-        rvItems.setHasFixedSize(true);
-        rvItems.setAdapter(new RecyclerDataAdapter(getActivity(), lstCourse));
-
-        //end data
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(mAdapter!=null)
+         mAdapter.startListening();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

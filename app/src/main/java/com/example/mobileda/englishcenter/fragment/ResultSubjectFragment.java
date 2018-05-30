@@ -38,8 +38,6 @@ public class ResultSubjectFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
         return view;
     }
 
@@ -49,13 +47,6 @@ public class ResultSubjectFragment extends Fragment {
         gvClass = (GridView) view.findViewById(R.id.gvClass);
         lstCourse = new ArrayList<>();
         //data
-        lstCourse.add(new Course(R.mipmap.headphones,"L210","Listening lv1"));
-        lstCourse.add(new Course(R.mipmap.listen1,"L543","Master Listening"));
-        lstCourse.add(new Course(R.mipmap.speak,"S210","Communication Speaking"));
-        lstCourse.add(new Course(R.mipmap.reading,"R210","Basic Readinging"));
-        lstCourse.add(new Course(R.mipmap.write1,"W556","Writing A"));
-        lstCourse.add(new Course(R.mipmap.openbook,"R92A","Reading lv2"));
-        lstCourse.add(new Course(R.mipmap.speak,"S210","Speaking for Job"));
-        lstCourse.add(new Course(R.mipmap.headphones,"S210","Master Listening"));
+
     }
 }

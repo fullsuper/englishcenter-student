@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layoutCourse">
+
+    <ImageView
+        android:id="@+id/imgCourseRegistration"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:src="@mipmap/listjob"/>
+
+    <TextView
+        android:id="@+id/txtCourse"
+        android:layout_width="255dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imgCourseRegistration"
+        android:layout_marginEnd="14dp"
+        android:text="Speaking for Job"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/txtTime"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtCourse"
+        android:text="Monday"
+        android:textAlignment="center"
+        android:textSize="14dp" />
+    <TextView
+        android:id="@+id/txtRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtTeacher"
+        android:layout_alignStart="@+id/txtCourse"
+
+        android:text="A506"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/txtTeacher"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgCourseRegistration"
+        android:layout_alignStart="@+id/txtCourse"
+        android:text="Johnson Heckar"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/txtState"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imgCourseRegistration"
+        android:layout_alignParentEnd="true"
+        android:background="@color/orange_primary"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        android:text="Tình trạng"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="12dp" />
+</RelativeLayout>
