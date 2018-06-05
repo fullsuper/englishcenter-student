@@ -95,8 +95,6 @@ public class RegistrationAdapter
         }
         public void bind(final DocumentSnapshot snapshot, final OnCourseClickListener mListener) {
 
-
-            //String studentid = FirebaseAuth.getInstance().getUid();
             final RegistrationCourse course = snapshot.toObject(RegistrationCourse.class);
             txtCourse.setText(course.getCourse());
             txtTime.setText(course.getTime());
@@ -105,24 +103,20 @@ public class RegistrationAdapter
             course.getTeacher().addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot2, @Nullable FirebaseFirestoreException e) {
-                            txtTeacher.setText(documentSnapshot2.getString("Name"));
+                            txtTeacher.setText(documentSnapshot2.getString("name"));
                     }});
-
-
-
             // check
             FirebaseFirestore.getInstance()
-                    .document("lstStudent/" + FirebaseAuth.getInstance().getUid() + "/courses/" + snapshot.getId())
+                    .document("students/" + FirebaseAuth.getInstance().getUid() + "/courses/" + snapshot.getId())
                     .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                         @Override
-                        public void onEvent(@javax.annotation.Nullable DocumentSnapshot documentSnapshot, @javax.annotation.Nullable FirebaseFirestoreException e) {
+                        public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                             if(documentSnapshot.getString("course") == null){
-                                txtState.setBackgroundColor(Color.parseColor("RED"));
+                                txtState.setBackgroundResource(R.drawable.custom_shape2);
                                 txtState.setText(course.getState());
                             }
                             else
                                 txtState.setText("Đã đăng ký");
-
                         }
                     });
 

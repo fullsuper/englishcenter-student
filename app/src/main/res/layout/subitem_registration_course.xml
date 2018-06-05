@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imgCourseRegistration"
         android:layout_alignParentEnd="true"
-        android:background="@color/orange_primary"
+        android:background="@drawable/custom_button"
         android:paddingHorizontal="6dp"
         android:paddingVertical="2dp"
         android:text="Tình trạng"

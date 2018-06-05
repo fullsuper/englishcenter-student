@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+   <TextView
+       android:text="Kết quả của bạn"
+       android:layout_gravity="center"
+       android:textSize="25dp"
+       android:background="@drawable/custom_shape1"
+       android:layout_margin="20dp"
+       android:layout_width="wrap_content"
+       android:paddingHorizontal="20dp"
+       android:paddingVertical="3dp"
+       android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </android.support.v7.widget.RecyclerView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +30,7 @@
         android:layout_marginTop="30dp"
         android:padding="10dp"
         android:text="Kết quả khóa học"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -55,7 +71,7 @@
             android:textSize="20dp" />
 
         <TextView
-            android:id="@+id/txtSubject"
+            android:id="@+id/txtCourse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

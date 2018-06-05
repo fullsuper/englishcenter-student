@@ -3,11 +3,9 @@ package com.example.mobileda.englishcenter.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +13,8 @@ import android.widget.TextView;
 
 import com.example.mobileda.englishcenter.R;
 
-import java.util.ArrayList;
-
 import com.example.mobileda.englishcenter.activity.RegistorActivity;
-import com.example.mobileda.englishcenter.adapter.RecyclerDataAdapter;
 import com.example.mobileda.englishcenter.adapter.RegistrationAdapter;
-import com.example.mobileda.englishcenter.model.Message;
-import com.example.mobileda.englishcenter.model.RegistrationCourse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -71,7 +64,7 @@ public class UnregisteredSubjectFragment extends android.support.v4.app.Fragment
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        mQuery = mFirestore.collection("lstCourse");
+        mQuery = mFirestore.collection("courses");
 
         mAdapter = new RegistrationAdapter(mQuery, new RegistrationAdapter.OnCourseClickListener() {
             @Override

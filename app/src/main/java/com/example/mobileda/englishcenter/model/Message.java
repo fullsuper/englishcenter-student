@@ -1,26 +1,22 @@
 package com.example.mobileda.englishcenter.model;
 
+import com.google.firebase.firestore.DocumentReference;
+
 /**
  * Created by fullsuper on 5/19/2018.
  */
 
 public class Message {
-    private int imageTitle;
     private String title;
     private String content;
+    private DocumentReference teacher;
 
-    public Message(int imageTitle, String title, String content) {
-        this.imageTitle = imageTitle;
+    public Message() {
+    }
+    public Message(String title, String content,DocumentReference teacher) {
         this.title = title;
         this.content = content;
-    }
-
-    public int getImageTitle() {
-        return imageTitle;
-    }
-
-    public void setImageTitle(int imageTitle) {
-        this.imageTitle = imageTitle;
+        this.teacher = teacher;
     }
 
     public String getTitle() {
@@ -37,5 +33,13 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public DocumentReference getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(DocumentReference teacher) {
+        this.teacher = teacher;
     }
 }

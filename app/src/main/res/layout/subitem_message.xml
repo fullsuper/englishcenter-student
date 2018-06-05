@@ -9,11 +9,15 @@
         android:id="@+id/imgMessage"
         android:layout_width="80dp"
         android:layout_height="80dp"
+
         android:layout_alignParentTop="true"
-        android:src="@mipmap/envelope"
+        android:src="@mipmap/message2"
         android:layout_margin="10dp"/>
 
     <TextView
+        android:gravity="center"
+        android:textColor="@color/green_primary_dark"
+        android:textStyle="bold"
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,15 +25,28 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:layout_toEndOf="@+id/imgMessage"
-        android:textSize="25dp"
+        android:textSize="20dp"
         tools:text="Tiêu Đề" />
-
+    <TextView
+        android:id="@+id/tvTeacher"
+        android:text="Giáo viên"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_alignTop="@+id/imgMessage"
+        android:layout_marginTop="25dp"
+        android:layout_alignStart="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
-        android:layout_height="38dp"
+        android:layout_height="36dp"
+        android:layout_marginRight="5dp"
         android:layout_alignBottom="@+id/imgMessage"
         android:layout_alignStart="@+id/tvTitle"
+        android:textAlignment="center"
+
         tools:text="Nội Dung Nội Dung Nội Dung Nội Dung Nội Dung Nội Nội Dung Nội Dung Nội Dung Nội Dung Nội Dung Nội Dung Nội Dung " />
 
 

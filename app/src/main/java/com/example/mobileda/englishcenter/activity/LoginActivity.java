@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                         Map<String, Object> student = new HashMap<>();
 
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        db.collection("lstStudent")
+                        db.collection("students")
                                 .document(FirebaseAuth.getInstance().getUid())
                                 .set(student)
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {

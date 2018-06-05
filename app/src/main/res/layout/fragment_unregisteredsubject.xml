@@ -6,7 +6,8 @@
     tools:context=".fragment.UnregisteredSubjectFragment">
 
     <TextView
-
+        android:background="@drawable/custom_shape1"
+        android:paddingVertical="5dp"
         android:id="@+id/section_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

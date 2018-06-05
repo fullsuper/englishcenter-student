@@ -17,10 +17,6 @@
         android:title="Đăng ký môn học"
         android:icon="@mipmap/note"/>
     <item
-        android:id="@+id/nav_testing_schedule"
-        android:title="Lịch thi"
-        android:icon="@mipmap/calendar1"/>
-    <item
         android:id="@+id/nav_quizs"
         android:title="Quizs"
         android:icon="@mipmap/exam"/>
