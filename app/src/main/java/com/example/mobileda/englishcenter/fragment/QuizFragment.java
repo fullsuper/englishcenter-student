@@ -149,6 +149,7 @@ public class QuizFragment extends Fragment {
                         btnEnd.setEnabled(false);
                         btnStart.setEnabled(true);
                         courseID = snapshot.getId();
+                        rvQuizs.setVisibility(View.INVISIBLE);
                         txtCourse.setText(snapshot.getString("course"));
                     }
                 });
