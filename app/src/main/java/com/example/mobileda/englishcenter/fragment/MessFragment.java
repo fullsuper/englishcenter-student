@@ -2,6 +2,7 @@ package com.example.mobileda.englishcenter.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class MessFragment extends Fragment
 
         ButterKnife.bind(this,view);
 
+
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
@@ -72,6 +74,8 @@ public class MessFragment extends Fragment
 
                     }
                 });
+                rvMessage.addItemDecoration(new DividerItemDecoration(rvMessage.getContext(), DividerItemDecoration.VERTICAL));
+
                 rvMessage.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayout.VERTICAL,false));
                 rvMessage.setAdapter(nAdapter);
                 nAdapter.startListening();

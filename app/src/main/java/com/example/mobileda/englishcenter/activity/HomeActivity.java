@@ -26,6 +26,7 @@ import com.example.mobileda.englishcenter.R;
 import com.example.mobileda.englishcenter.fragment.FeeFragment;
 import com.example.mobileda.englishcenter.fragment.MessFragment;
 import com.example.mobileda.englishcenter.fragment.ProfileFragment;
+import com.example.mobileda.englishcenter.fragment.QuizFragment;
 import com.example.mobileda.englishcenter.fragment.ScheduleFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -72,6 +73,9 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment fragment = new Fragment();
                 int i = menuItem.getItemId();
                 switch (i) {
+                    case R.id.nav_quizs:
+                        fragment = new QuizFragment();
+                        break;
                     case R.id.nav_action:
                         break;
                     case R.id.nav_fee:

@@ -2,6 +2,7 @@ package com.example.mobileda.englishcenter.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,8 +70,8 @@ public class MessageAdapter extends FirestoreAdapter<MessageAdapter.ViewHolder> 
             final Message message = snapshot.toObject(Message.class);
             tvTitle.setText(message.getTitle());
             tvContent.setText(message.getContent());
-
             if (message.getTeacher()!= null)
+
             message.getTeacher().addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
                 public void onEvent(@Nullable DocumentSnapshot documentSnapshot2, @Nullable FirebaseFirestoreException e) {

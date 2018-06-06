@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/txtCourse"
+        android:layout_marginVertical="10dp"
+        android:text="Môn học"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:background="@drawable/custom_shape1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:text="Bắt đầu"
+            android:enabled="true"
+            android:background="@drawable/custom_button"
+            android:layout_marginHorizontal="20dp"/>
+        <Button
+            android:enabled="false"
+            android:id="@+id/btnEnd"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="2dp"
+            android:textColor="@color/white"
+            android:text="Kết thúc"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/custom_shape2"/>
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvQuizs">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

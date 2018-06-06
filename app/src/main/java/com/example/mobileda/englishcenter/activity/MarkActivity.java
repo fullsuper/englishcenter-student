@@ -58,16 +58,17 @@ public class MarkActivity extends AppCompatActivity {
             @Override
             public void OnCourseClicked(DocumentSnapshot snapshot) {
                 //show diem
-                try {
-                    txtCourse.setText(snapshot.getString("course"));
-                    txtFirstMark.setText(snapshot.getString("finalterm_mark"));
-                    txtSecondMark.setText(snapshot.getString("midterm_mark"));
-                }
-                catch (Exception e) {
-                    txtSecondMark.setText("Chưa cập nhật");
-                    txtFirstMark.setText("Chưa cập nhật");
 
-                }
+                    txtCourse.setText(snapshot.getString("course"));
+                    txtFirstMark.setText(snapshot.getDouble("finalterm_mark")+"");
+                    txtSecondMark.setText(snapshot.getDouble("midterm_mark")+"");
+
+                    if (txtSecondMark.getText().equals("null"))
+                        txtSecondMark.setText("Chưa cập nhật");
+                    if (txtFirstMark.getText().equals("null"))
+                      txtFirstMark.setText("Chưa cập nhật");
+
+
             }
         });
 

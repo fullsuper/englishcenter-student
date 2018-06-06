@@ -54,7 +54,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
         <EditText
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:enabled="false"
             android:background="@null"
             android:text=""
@@ -76,7 +77,8 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:enabled="false"
             android:maxLines="1"
             android:background="@null"
@@ -100,7 +102,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
         <EditText
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:enabled="false"
             android:background="@null"
             android:text=""
@@ -124,8 +127,8 @@
         <EditText
 
             android:enabled="false"
-            android:maxLines="1"
-            android:paddingHorizontal="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
             android:background="@null"
             android:text="aaa"
             android:textSize="20dp"
